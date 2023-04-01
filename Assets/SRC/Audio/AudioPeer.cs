@@ -8,11 +8,17 @@ using UnityEngine.Events;
 [RequireComponent(typeof(AudioSource))]
 public class AudioPeer : MonoBehaviour
 {
+    public float beatAcceptPause = 0.2f;
+    public float freqSensivity = 0f;
+    private float _timeAfterBeatAccepted = 0.0f;
+
     public AudioSource _audioSource;
     public BeatListener listener;
+
     public float[] _samples = new float[512];
     public float[] _freqGroups = new float[8];
     public int[] _freqGroupsToListen;
+
     public UnityEvent beatStart;
     void Start()
     {
@@ -21,13 +27,19 @@ public class AudioPeer : MonoBehaviour
     }
     void Update()
     {
+        _timeAfterBeatAccepted += Time.deltaTime;
         SetSpectrumAudioSource();
         SetFrequinceGroups();
         float dfg = _samples[1] * 10;
-        for(int a =0; a< _freqGroupsToListen.Length; a++)
+        if (_timeAfterBeatAccepted < beatAcceptPause)
         {
-            if (_freqGroups[_freqGroupsToListen[a]]  > 1f)
+            return;
+        }
+        for (int a =0; a< _freqGroupsToListen.Length; a++)
+        {
+            if (_freqGroups[_freqGroupsToListen[a]]  > freqSensivity)
             {
+                _timeAfterBeatAccepted=0f; 
                 beatStart.Invoke();
             }
         }
