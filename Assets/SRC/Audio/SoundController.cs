@@ -84,6 +84,7 @@ public class SoundController : MonoBehaviour
     {
         if (catchingLock)
         {
+            catchingLock = !catchingLock;
             return false;
         }
         if (beatTimeAfterStart <= beatCatchTimeRange)

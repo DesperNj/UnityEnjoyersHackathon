@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -669,14 +669,19 @@ MonoBehaviour:
   additioanSounds:
   - beatsToStart: 0
     audio:
-    - {fileID: 8300000, guid: 21c8c0d396c0b674eb34b07833a4304e, type: 3}
+    - {fileID: 8300000, guid: 7e29d9bb93c7a524f933ee773cb74639, type: 3}
     isInited: 0
-    volume: 0.8
-  - beatsToStart: 10
+    volume: 0.3
+  - beatsToStart: 5
+    audio:
+    - {fileID: 8300000, guid: 1a97eb77b4d4fdc48a10ecc4d631bd72, type: 3}
+    isInited: 0
+    volume: 0.3
+  - beatsToStart: 12
     audio:
     - {fileID: 8300000, guid: 7faba3dd4a9e10c4f805b1ec4c4ebfa2, type: 3}
     isInited: 0
-    volume: 0.1
+    volume: 0.2
   disableAdditionalSounds: 0
 --- !u!81 &667939085
 AudioListener:
@@ -1477,8 +1482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc6cd58fdc0df24aabade2a3aa28366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatAcceptPause: 0.1
-  freqSensivity: 1
+  beatAcceptPause: 0
+  freqSensivity: 3
   _audioSource: {fileID: 1591556699}
   listener: {fileID: 0}
   _samples:
@@ -2003,7 +2008,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  _freqGroupsToListen: 0100000002000000
+  _freqGroupsToListen: 03000000
   beatStart:
     m_PersistentCalls:
       m_Calls:
@@ -2041,7 +2046,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b23c8795f386af743a046a0269154480, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d8dccf7027201994196e3f1349702aee, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
