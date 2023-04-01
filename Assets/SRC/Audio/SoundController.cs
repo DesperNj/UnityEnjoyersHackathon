@@ -68,7 +68,7 @@ public class AdditioanSound
     {
         if (SoundController.instance.beatsCatched >= beatsToStart)
         {
-            Instantiate()
+            
         }
     }
 }
