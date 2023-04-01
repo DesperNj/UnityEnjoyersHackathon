@@ -6,18 +6,42 @@ using UnityEngine.Timeline;
 using System.Numerics;
 using Palmmedia.ReportGenerator.Core.Common;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Unity.VisualScripting;
+
 public class SoundController : MonoBehaviour
 {
-    public AudioSource souce;
+    public static SoundController instance = null;
+    public int beatsCatched = 0;
+    private void Awake()
+    {
+        if (!instance)
+        {
+            instance = this;
+        }
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
+    }
+    public void BeatdCatched()
+    {
+        beatsCatched++;
+    }
+}
+public class AdditioanSound
+{
+    public int beatsToStart = 0;
+    public AudioClip[] audio;
+    public void TryStart()
+    {
+        if (SoundController.instance.beatsCatched >= beatsToStart)
+        {
+            
+        }
     }
 }
