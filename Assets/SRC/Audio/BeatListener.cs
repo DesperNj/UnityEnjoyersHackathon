@@ -5,18 +5,31 @@ using UnityEngine.Events;
 
 public class BeatListener : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (SoundController.instance.TryCatchBeat())
+            {
+                BeatCatched();
+            }
+            else
+            {
+                var lossAnim = GetComponent<Animation>();
+                if (lossAnim)
+                {
+                    lossAnim.Play();
+                }
+              
+            //    Invoke(nameof(ResetPitch), 0.5f);
+            }
+        }
     }
-    public void AcceptBeat()
+    public void ResetPitch()
+    {
+        GetComponent<AudioSource>().pitch = 1.0f;
+    }
+    public void BeatCatched()
     {
         var transform = GetComponent<Transform>();
         transform.localScale = new Vector3(1.0f,0.50f,1.0f);

@@ -7,11 +7,16 @@ using System.Numerics;
 using Palmmedia.ReportGenerator.Core.Common;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Unity.VisualScripting;
+using UnityEngine.Events;
 
 public class SoundController : MonoBehaviour
 {
     public static SoundController instance = null;
     public int beatsCatched = 0;
+    public float beatCatchRange = 0;
+    public float beatTimeAfterPlay = 0;
+    public UnityEvent beatCatched;
+
     private void Awake()
     {
         if (!instance)
@@ -20,18 +25,33 @@ public class SoundController : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
+        beatTimeAfterPlay += Time.deltaTime;
     }
     public void BeatdCatched()
     {
         beatsCatched++;
+        beatCatched.Invoke();
     }
+    public void AcceptBeat()
+    {
+        beatTimeAfterPlay = 0f;
+    }
+    public bool TryCatchBeat()
+    {
+        if (beatTimeAfterPlay <= beatCatchRange)
+        {
+            BeatdCatched();
+            return true;
+        }
+        return false;
+    }
+    public void PlayAudio(AudioSource audio)
+    {
+
+    }
+
 }
 public class AdditioanSound
 {
