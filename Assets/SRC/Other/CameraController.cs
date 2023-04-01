@@ -8,18 +8,18 @@ public class CameraController : MonoBehaviour
     public AnimationClip GameOver;
     private Animation _cameraanimation;
 
-    public void Awake() 
+    public void Awake()
     {
         _cameraanimation = GetComponent<Animation>();
     }
 
-   public void CameraMissedBeat()
+    public void CameraMissedBeat()
     {
         _cameraanimation.clip = MissedBeat;
         _cameraanimation.Play();
     }
 
-   public void CameraGameOver()
+    public void CameraGameOver()
     {
         _cameraanimation.clip = GameOver;
         _cameraanimation.Play();

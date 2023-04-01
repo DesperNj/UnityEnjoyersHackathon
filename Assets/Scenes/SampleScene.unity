@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatsCatched: 0
+  beatsMissed: 0
   beatCatchTimeRange: 0.3
   beatCatched:
     m_PersistentCalls:
@@ -627,7 +628,19 @@ MonoBehaviour:
         m_CallState: 2
   beatMissed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 963194231}
+        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+        m_MethodName: CameraMissedBeat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   backAudioPrefab: {fileID: 266576697347068123, guid: 4146dbe744c6f7c4d90f8c8471b6821b, type: 3}
   additioanSounds:
   - beatsToStart: 0
@@ -911,8 +924,9 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194229}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -978,23 +992,6 @@ Transform:
   m_Father: {fileID: 1792554795}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 18, y: 0, z: -0.5499259}
---- !u!111 &963194229
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 5902b399af4c3354d99f49634337c48a, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 5902b399af4c3354d99f49634337c48a, type: 2}
-  - {fileID: 7400000, guid: f823e213adce678409be5e578a44f193, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1008,36 @@ MonoBehaviour:
   _radius: 1.2
   _horizontal: 16
   _vertical: 9
+--- !u!114 &963194231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfa06b4cab2ea746b7006967156721b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MissedBeat: {fileID: 7400000, guid: 4dc6358967119cb4c8912de5d60d4dd2, type: 2}
+  GameOver: {fileID: 7400000, guid: f823e213adce678409be5e578a44f193, type: 2}
+--- !u!111 &963194232
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4dc6358967119cb4c8912de5d60d4dd2, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 4dc6358967119cb4c8912de5d60d4dd2, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1262368521
 GameObject:
   m_ObjectHideFlags: 0

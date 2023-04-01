@@ -21,7 +21,6 @@ public class BeatListener : MonoBehaviour
                     lossAnim.Play();
                 }
               
-            //    Invoke(nameof(ResetPitch), 0.5f);
             }
         }
     }
