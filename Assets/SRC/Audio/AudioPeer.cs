@@ -12,7 +12,7 @@ public class AudioPeer : MonoBehaviour
     public BeatListener listener;
     public float[] _samples = new float[512];
     public float[] _freqGroups = new float[8];
-    public float[] _freqGroupsToListen;
+    public int[] _freqGroupsToListen;
     public UnityEvent beatStart;
     void Start()
     {
@@ -23,10 +23,13 @@ public class AudioPeer : MonoBehaviour
     {
         SetSpectrumAudioSource();
         SetFrequinceGroups();
-        float dfg = _samples[1] *10;
-        if (_freqGroups[4] > 1f || _freqGroups[5] > 1f)
+        float dfg = _samples[1] * 10;
+        for(int a =0; a< _freqGroupsToListen.Length; a++)
         {
-            beatStart.Invoke();
+            if (_freqGroups[_freqGroupsToListen[a]]  > 1f)
+            {
+                beatStart.Invoke();
+            }
         }
     }
     void SetSpectrumAudioSource()
