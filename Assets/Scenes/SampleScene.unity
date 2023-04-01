@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 130102144}
   - component: {fileID: 130102142}
   - component: {fileID: 130102143}
+  - component: {fileID: 130102145}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -298,6 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catDown: {fileID: 21300000, guid: 6992fe7df66af144ea6274e15ab99e92, type: 3}
   catUp: {fileID: 21300000, guid: 9134c73c79902e043a0f7c0bd2c2e7e0, type: 3}
+  catIdleClip: {fileID: 7400000, guid: deafd470aecbc9746b3758a69643ecf9, type: 2}
+  timeToStartIdle: 1
 --- !u!212 &130102143
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -365,6 +368,22 @@ Transform:
   m_Father: {fileID: 502467718}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -27.79, z: 0}
+--- !u!111 &130102145
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130102141}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: deafd470aecbc9746b3758a69643ecf9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: deafd470aecbc9746b3758a69643ecf9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &226635716
 GameObject:
   m_ObjectHideFlags: 0
