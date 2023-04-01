@@ -9,11 +9,15 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Unity.VisualScripting;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
+using System.ComponentModel;
 
 public class SoundController : MonoBehaviour
 {
     public static SoundController instance = null;
+    [ReadOnly(true)]
     public int beatsCatched = 0;
+    [ReadOnly(true)]
+    public int beatsMissed = 0;
     public float beatCatchTimeRange = 0;
     public UnityEvent beatCatched;
     public UnityEvent beatMissed;
@@ -69,6 +73,7 @@ public class SoundController : MonoBehaviour
     public void BeatMissed()
     {
         beatMissed.Invoke();
+        beatsMissed++;
     }
     public void AcceptBeat()
     {
