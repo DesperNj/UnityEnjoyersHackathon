@@ -21,7 +21,9 @@ public class SoundController : MonoBehaviour
     public GameObject backAudioPrefab;
     public AdditioanSound[] additioanSounds;
 
+    public bool disableAdditionalSounds = false;
     private bool catched = false;
+
     private Transform _transform;
 
     private void Awake()
@@ -46,6 +48,10 @@ public class SoundController : MonoBehaviour
     }
     public void CheckAdditionalSounds()
     {
+        if (disableAdditionalSounds)
+        {
+            return;
+        }
         for (int a = 0; a < additioanSounds.Length; a++)
         {
             if (additioanSounds[a].CheckCanStartCondition())

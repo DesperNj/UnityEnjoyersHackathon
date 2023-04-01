@@ -8,7 +8,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(AudioSource))]
 public class AudioPeer : MonoBehaviour
 {
-    public float beatAcceptPause = 0.2f;
+    public float beatAcceptPause = 0.1f;
     public float freqSensivity = 0f;
     private float _timeAfterBeatAccepted = 0.0f;
 
