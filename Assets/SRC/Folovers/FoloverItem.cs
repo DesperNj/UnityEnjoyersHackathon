@@ -23,7 +23,7 @@ public class FoloverItem : MonoBehaviour
     {
         if (progress >= 0.99) {
             if(needDelete) {
-               // Destroy(gameObject);
+                Destroy(gameObject);
             }
             return;
         }
@@ -35,7 +35,8 @@ public class FoloverItem : MonoBehaviour
     {
         startPosition = transform.position;
         targetPosition = startPosition;
-        targetPosition.z = -moveOfset;
+        targetPosition.z = 0;
+        progress = 0.0f;
         GetComponent<Animation>().Play();        
         needDelete = true;
     }
