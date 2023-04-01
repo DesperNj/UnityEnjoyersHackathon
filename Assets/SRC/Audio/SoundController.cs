@@ -14,16 +14,15 @@ public class SoundController : MonoBehaviour
 {
     public static SoundController instance = null;
     public int beatsCatched = 0;
-    public float beatCatchRange = 0;
-    public float beatTimeAfterStart = 0;
+    public float beatCatchTimeRange = 0;
     public UnityEvent beatCatched;
     public UnityEvent beatMissed;
     public GameObject backAudioPrefab;
     public AdditioanSound[] additioanSounds;
 
     public bool disableAdditionalSounds = false;
-    private bool catched = false;
-
+    private bool catchingLock = false;
+    private float beatTimeAfterStart = 0;
     private Transform _transform;
 
     private void Awake()
@@ -74,14 +73,18 @@ public class SoundController : MonoBehaviour
     public void AcceptBeat()
     {
         beatTimeAfterStart = 0f;
-        catched = false;
+        catchingLock = false;
     }
     public bool TryCatchBeat()
     {
-        if (!catched && beatTimeAfterStart <= beatCatchRange)
+        if (catchingLock)
+        {
+            return false;
+        }
+        if (beatTimeAfterStart <= beatCatchTimeRange)
         {
             BeatdCatched();
-            return catched = true;
+            return catchingLock = true;
         }
         BeatMissed();
         return false;
