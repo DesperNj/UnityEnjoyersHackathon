@@ -6,6 +6,7 @@ public class FoloversManager : MonoBehaviour
 {
     public GameObject foloverObject;
     public int beatsOfset;
+    int beatdCatched = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,16 @@ public class FoloversManager : MonoBehaviour
             SpawnFolover();
         }
     }
+    public void BeatdCatched()
+    {
+        beatdCatched++;
+
+        if(beatdCatched >= beatsOfset) {
+            beatdCatched = 0;
+            SpawnFolover();
+        }
+    }
+
     void SpawnFolover()
     {
         Vector3 offset = Random.insideUnitSphere;
@@ -31,5 +42,20 @@ public class FoloversManager : MonoBehaviour
         position.z = transform.position.z + offset.z;
 
         Instantiate(foloverObject, position, Quaternion.identity, transform);
+    }
+
+    public void FoloverGone()
+    {
+        beatdCatched = 0;
+
+        int count = transform.childCount;
+
+        if (count <= 0) {
+            return;
+        }
+
+        int index = Random.Range(0, count);
+        Transform item = transform.GetChild(index);
+        item.GetComponent<FoloverItem>().Gone();
     }
 }
