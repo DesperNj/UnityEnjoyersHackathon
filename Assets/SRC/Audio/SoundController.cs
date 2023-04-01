@@ -89,10 +89,12 @@ public class SoundController : MonoBehaviour
         if (beatTimeAfterStart <= beatCatchTimeRange)
         {
             BeatdCatched();
-            return catchingLock = true;
         }
-        BeatMissed();
-        return false;
+        else
+        {
+            BeatMissed();
+        }
+        return catchingLock = true;
     }
     public void PlayAudio(AudioSource audio)
     {
