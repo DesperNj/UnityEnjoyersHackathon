@@ -16,6 +16,8 @@ public class SoundController : MonoBehaviour
     public float beatCatchRange = 0;
     public float beatTimeAfterPlay = 0;
     public UnityEvent beatCatched;
+    public UnityEvent beatMissed;
+    public GameObject backAudioPrefab;
 
     private void Awake()
     {
@@ -34,6 +36,10 @@ public class SoundController : MonoBehaviour
         beatsCatched++;
         beatCatched.Invoke();
     }
+    public void BeatMissed()
+    {
+        beatMissed.Invoke();
+    }
     public void AcceptBeat()
     {
         beatTimeAfterPlay = 0f;
@@ -45,6 +51,7 @@ public class SoundController : MonoBehaviour
             BeatdCatched();
             return true;
         }
+        BeatMissed();
         return false;
     }
     public void PlayAudio(AudioSource audio)
@@ -61,7 +68,7 @@ public class AdditioanSound
     {
         if (SoundController.instance.beatsCatched >= beatsToStart)
         {
-            
+            Instantiate()
         }
     }
 }
