@@ -117,3 +117,4 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   progress: 0
   moveOfset: 5
+  maxProbability: 1000

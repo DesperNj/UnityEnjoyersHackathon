@@ -22,6 +22,7 @@ public class CoinItem : MonoBehaviour
         GetComponent<Transform>().position = Vector3.Lerp(startPosition, mainHeroPosition, progress);
 
         if (progress >= 1) {
+            CoinManager.instance.IncrementCoins();
             Destroy(gameObject);
         }
     }

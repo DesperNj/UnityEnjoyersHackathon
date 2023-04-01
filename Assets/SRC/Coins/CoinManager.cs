@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
+    public static CoinManager instance = null;
     public GameObject coinObject;
     public int radius;
+    int coinsCatched = 0;
+
+    private void Awake()
+    {
+        if (!instance) {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +31,7 @@ public class CoinManager : MonoBehaviour
         }
     }
 
-    void SpawnCoin()
+    public void SpawnCoin()
     {
         GameObject foloversContainer = GameObject.Find("FoloversContainer");
         int count = foloversContainer.transform.childCount;
@@ -34,5 +44,15 @@ public class CoinManager : MonoBehaviour
         Vector3 startPosition = foloversContainer.transform.GetChild(index).transform.position;
 
         Instantiate(coinObject, startPosition, Quaternion.identity, transform);
+    }
+
+    public void IncrementCoins()
+    {
+        coinsCatched++;
+    }
+
+    public int GetCatchedCoins()
+    {
+        return coinsCatched;
     }
 }

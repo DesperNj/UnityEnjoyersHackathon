@@ -8,6 +8,7 @@ public class FoloverItem : MonoBehaviour
     public Vector3 targetPosition;
     public float progress;
     public int moveOfset;
+    public int maxProbability;
     bool needDelete = false;
 
     // Start is called before the first frame update
@@ -22,7 +23,8 @@ public class FoloverItem : MonoBehaviour
     void Update()
     {
         if (progress >= 0.99) {
-            if(needDelete) {
+            TryToThrowCoin();
+            if (needDelete) {
                 Destroy(gameObject);
             }
             return;
@@ -39,5 +41,12 @@ public class FoloverItem : MonoBehaviour
         progress = 0.0f;
         GetComponent<Animation>().Play();        
         needDelete = true;
+    }
+
+    void TryToThrowCoin()
+    {
+        if(Random.Range(0, maxProbability) == 1) {
+            CoinManager.instance.SpawnCoin();
+        }
     }
 }
