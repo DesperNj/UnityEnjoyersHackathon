@@ -61,12 +61,14 @@ public class SoundController : MonoBehaviour
             {
                 additioanSounds[a].isInited = true;
                 var prefab = Instantiate(backAudioPrefab);
+                var component = prefab.AddComponent<BeatListener>();
                 prefab.transform.parent = _transform;
 
                 var audioS = prefab.GetComponent<AudioSource>();
                 audioS.clip = additioanSounds[a].audio[0];
                 audioS.volume = additioanSounds[a].volume;
                 audioS.Play();
+              //  beatMissed.AddListener(component.MissBeat);
             }
         }
     }
@@ -90,9 +92,11 @@ public class SoundController : MonoBehaviour
         if (beatTimeAfterStart <= beatCatchTimeRange)
         {
             BeatdCatched();
+            return true;
         }
         else
         {
+            Invoke(nameof(TryCatchBeat), beatCatchTimeRange);
             BeatMissed();
         }
         return catchingLock = true;

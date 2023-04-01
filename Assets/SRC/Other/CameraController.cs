@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public AnimationClip MissedBeat;
     public AnimationClip GameOver;
+    public AnimationClip BeatCatched;
     private Animation _cameraanimation;
 
     public void Awake()
@@ -22,6 +23,11 @@ public class CameraController : MonoBehaviour
     public void CameraGameOver()
     {
         _cameraanimation.clip = GameOver;
+        _cameraanimation.Play();
+    }
+    public void CameraBeatCatched()
+    {
+        _cameraanimation.clip = BeatCatched;
         _cameraanimation.Play();
     }
 
