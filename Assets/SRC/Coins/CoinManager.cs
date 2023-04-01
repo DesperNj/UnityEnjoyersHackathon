@@ -17,7 +17,22 @@ public class CoinManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-             Instantiate(coinObject, transform.position + Random.insideUnitSphere * radius, Quaternion.identity, transform);
+            SpawnCoin();
         }
+    }
+
+    void SpawnCoin()
+    {
+        GameObject foloversContainer = GameObject.Find("FoloversContainer");
+        int count = foloversContainer.transform.childCount;
+       
+        if (count <= 0) { 
+            return; 
+        }
+
+        int index = Random.Range(0, count);
+        Vector3 startPosition = foloversContainer.transform.GetChild(index).transform.position;
+
+        Instantiate(coinObject, startPosition, Quaternion.identity, transform);
     }
 }
