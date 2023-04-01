@@ -8,6 +8,7 @@ using Palmmedia.ReportGenerator.Core.Common;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Unity.VisualScripting;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class SoundController : MonoBehaviour
 {
@@ -18,12 +19,17 @@ public class SoundController : MonoBehaviour
     public UnityEvent beatCatched;
     public UnityEvent beatMissed;
     public GameObject backAudioPrefab;
+    public AdditioanSound[] additioanSounds;
+
+    private Transform _transform;
 
     private void Awake()
     {
         if (!instance)
         {
             instance = this;
+            _transform = GetComponent<Transform>();
+            CheckAdditionalSounds();
         }
     }
 
@@ -35,6 +41,24 @@ public class SoundController : MonoBehaviour
     {
         beatsCatched++;
         beatCatched.Invoke();
+        CheckAdditionalSounds();
+    }
+    public void CheckAdditionalSounds()
+    {
+        for (int a = 0; a < additioanSounds.Length; a++)
+        {
+            if (additioanSounds[a].CheckCanStartCondition())
+            {
+                additioanSounds[a].isInited = true;
+                var prefab = Instantiate(backAudioPrefab);
+                prefab.transform.parent = _transform;
+
+                var audioS = prefab.GetComponent<AudioSource>();
+                audioS.clip = additioanSounds[a].audio[0];
+                audioS.volume = additioanSounds[a].volume;
+                audioS.Play();
+            }
+        }
     }
     public void BeatMissed()
     {
@@ -60,15 +84,15 @@ public class SoundController : MonoBehaviour
     }
 
 }
+[System.Serializable]
 public class AdditioanSound
 {
     public int beatsToStart = 0;
     public AudioClip[] audio;
-    public void TryStart()
+    public bool isInited = false;
+    public float volume = 1f;
+    public bool CheckCanStartCondition()
     {
-        if (SoundController.instance.beatsCatched >= beatsToStart)
-        {
-            
-        }
+        return SoundController.instance.beatsCatched >= beatsToStart && !isInited;
     }
 }
