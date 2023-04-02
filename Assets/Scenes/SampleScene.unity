@@ -592,6 +592,7 @@ GameObject:
   - component: {fileID: 400691511}
   - component: {fileID: 400691513}
   - component: {fileID: 400691512}
+  - component: {fileID: 400691514}
   m_Layer: 0
   m_Name: MainHeroLocator
   m_TagString: Untagged
@@ -664,6 +665,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400691510}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!111 &400691514
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400691510}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d9339737bf932344f9a41cf3f65eca3c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d9339737bf932344f9a41cf3f65eca3c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &502467717
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class CoinItem : MonoBehaviour
     public Vector3 mainHeroPosition;
     public Vector3 startPosition;
     public float progress;
+    Animation hatAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class CoinItem : MonoBehaviour
 
         mainHeroPosition = mainHero.transform.position;
         startPosition = GetComponent<Transform>().position;
+        hatAnim = mainHero.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,9 @@ public class CoinItem : MonoBehaviour
         GetComponent<Transform>().position = newPos;
 
         if (progress >= 1) {
+            if (hatAnim) {
+                 hatAnim.Play();
+            }
             CoinManager.instance.IncrementCoins();
             Destroy(gameObject);
         }
