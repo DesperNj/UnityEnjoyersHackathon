@@ -43,6 +43,7 @@ public class FoloversManager : MonoBehaviour
         position.z = transform.position.z + (offset.z * OfsetX);
 
         Instantiate(foloverObject, position, Quaternion.identity, transform);
+        LivesController.instance.IncrementLives();
     }
 
     public void FoloverGone()
