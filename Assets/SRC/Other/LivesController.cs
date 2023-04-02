@@ -10,6 +10,8 @@ public class LivesController : MonoBehaviour
     public UnityEvent gameOver;
     public int livesOnStart;
     public int curentLives;
+    public int beatIgnorAllowed;
+    int beatIgnored = 0;
     public float gameOverDelay;
 
     private void Awake()
@@ -30,6 +32,22 @@ public class LivesController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void BeatCatched()
+    {
+        beatIgnored = 0;
+    }
+
+    public void BeatIgnored()
+    {
+        beatIgnored++;
+
+        if(beatIgnored > beatIgnorAllowed)
+        {
+            LivesLost();
+            beatIgnored = 0;
+        }
     }
 
     public void LivesLost()
