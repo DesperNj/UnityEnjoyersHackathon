@@ -10,6 +10,8 @@ public class FoloverItem : MonoBehaviour
     public int moveOfset;
     public int maxProbability;
     bool needDelete = false;
+    private float time = 0.0f;
+    public float interpolationPeriod = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,13 @@ public class FoloverItem : MonoBehaviour
     void Update()
     {
         if (progress >= 0.99) {
-            TryToThrowCoin();
+
+            time += Time.deltaTime;
+            if (time >= interpolationPeriod) {
+                time = 0.0f;
+                TryToThrowCoin();
+            }
+            
             if (needDelete) {
                 Destroy(gameObject);
             }

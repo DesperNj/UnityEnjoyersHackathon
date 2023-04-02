@@ -118,7 +118,8 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   progress: 0
   moveOfset: 5
-  maxProbability: 1000
+  maxProbability: 10
+  interpolationPeriod: 1
 --- !u!1 &5368084444732151524
 GameObject:
   m_ObjectHideFlags: 0
