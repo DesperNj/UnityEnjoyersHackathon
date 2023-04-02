@@ -612,6 +612,7 @@ MonoBehaviour:
         m_CallState: 2
   livesOnStart: 5
   curentLives: 0
+  gameOverDelay: 1
 --- !u!1 &301396841
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class LivesController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LivesController : MonoBehaviour
     public UnityEvent gameOver;
     public int livesOnStart;
     public int curentLives;
+    public float gameOverDelay;
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class LivesController : MonoBehaviour
 
         if (curentLives == 0) {
             gameOver.Invoke();
+            Invoke("GameOver", gameOverDelay);
         }
     }
 
@@ -64,5 +67,10 @@ public class LivesController : MonoBehaviour
 
         UpdateLivesUI(true);
         curentLives++;
+    }
+
+    void GameOver()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
