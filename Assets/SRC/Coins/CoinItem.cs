@@ -19,7 +19,10 @@ public class CoinItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Transform>().position = Vector3.Lerp(startPosition, mainHeroPosition, progress);
+        Vector3 newPos = Vector3.Lerp(startPosition, mainHeroPosition, progress);
+        newPos.y = GetComponent<Transform>().position.y;
+
+        GetComponent<Transform>().position = newPos;
 
         if (progress >= 1) {
             CoinManager.instance.IncrementCoins();
