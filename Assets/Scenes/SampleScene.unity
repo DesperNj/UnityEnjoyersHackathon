@@ -3424,6 +3424,7 @@ MonoBehaviour:
   _freqGroupsToListen: 03000000
   writeCurrentBeat: 0
   saveBeat: 0
+  lastSavedBeat: {fileID: 4900000, guid: 41cf282ce1c0a0346b61dd9a309a07af, type: 3}
   beatStart:
     m_PersistentCalls:
       m_Calls:

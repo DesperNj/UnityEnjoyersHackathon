@@ -25,7 +25,7 @@ public class AudioPeer : MonoBehaviour
     public bool writeCurrentBeat = false;
     public bool saveBeat = false;
 
-
+    public TextAsset lastSavedBeat;
     private BeatSaver beatSaver;
     private int currentSavedBeat = 0;
     public UnityEvent beatStart;
@@ -42,8 +42,7 @@ public class AudioPeer : MonoBehaviour
         }
         else
         {
-            string text =  System.IO.File.ReadAllText(Application.dataPath + "/LastSavedBeat.json");
-            beatSaver = JsonUtility.FromJson<BeatSaver>(text);
+            beatSaver = JsonUtility.FromJson<BeatSaver>(lastSavedBeat.ToString());
          }
     }
     void Update()
