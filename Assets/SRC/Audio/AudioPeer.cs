@@ -30,7 +30,6 @@ public class AudioPeer : MonoBehaviour
         _timeAfterBeatAccepted += Time.deltaTime;
         SetSpectrumAudioSource();
         SetFrequinceGroups();
-        float dfg = _samples[1] * 10;
         if (_timeAfterBeatAccepted < beatAcceptPause)
         {
             return;

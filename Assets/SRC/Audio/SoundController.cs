@@ -19,11 +19,15 @@ public class SoundController : MonoBehaviour
     [ReadOnly(true)]
     public int beatsAccepted = 0;
 
+    public UnityEvent musicEnded;
+
     public float beatCatchTimeRange = 0;
     public UnityEvent beatCatched;
     public UnityEvent beatMissed;
     public GameObject backAudioPrefab;
     public AdditioanSound[] additioanSounds;
+    public AudioSource audioS;
+    public AudioClip winAudio;
 
     public bool disableAdditionalSounds = false;
     private bool catchingLock = false;
@@ -31,6 +35,7 @@ public class SoundController : MonoBehaviour
     private int currentCatchTry = 0;
     private int catchTries = 2;
     private Transform _transform;
+    private bool additionalSoundStarted = false;
 
     private void Awake()
     {
@@ -38,6 +43,7 @@ public class SoundController : MonoBehaviour
         {
             instance = this;
             _transform = GetComponent<Transform>();
+            audioS = GetComponent<AudioSource>();
             CheckAdditionalSounds();
         }
     }
@@ -71,7 +77,10 @@ public class SoundController : MonoBehaviour
                 var audioS = prefab.GetComponent<AudioSource>();
                 audioS.clip = additioanSounds[a].audio[0];
                 audioS.volume = additioanSounds[a].volume;
+                audioS.loop = false;
                 audioS.Play();
+                Invoke(nameof(PlayWinAudio), audioS.clip.length);
+                additionalSoundStarted = true;
                 beatMissed.AddListener(component.BeatMissedSoundDist);
             }
         }
@@ -115,9 +124,12 @@ public class SoundController : MonoBehaviour
         }
         catchingLock = true;
     }
-    public void PlayAudio(AudioSource audio)
+    public void PlayWinAudio()
     {
-
+        audioS.clip = winAudio;
+        audioS.pitch = 1.4f;
+        audioS.Play();
+        Invoke(nameof(musicEnded), audioS.clip.length);
     }
 
 }
