@@ -135,7 +135,7 @@ public class SoundController : MonoBehaviour
         audioS.pitch = 1.4f;
         audioS.loop = false;
         audioS.Play();
-        Invoke(nameof(TrackEnded), audioS.clip.length);
+        Invoke(nameof(TrackEnded), audioS.clip.length/2);
     }
     public void TrackEnded()
     {
