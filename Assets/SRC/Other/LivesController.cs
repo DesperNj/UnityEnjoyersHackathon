@@ -13,6 +13,7 @@ public class LivesController : MonoBehaviour
     public int beatIgnorAllowed;
     int beatIgnored = 0;
     public float gameOverDelay;
+    public bool isDontDie;
 
     private void Awake()
     {
@@ -41,6 +42,8 @@ public class LivesController : MonoBehaviour
 
     public void BeatIgnored()
     {
+        if (isDontDie) { return; }
+
         beatIgnored++;
 
         if(beatIgnored > beatIgnorAllowed)
