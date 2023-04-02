@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foloverObject: {fileID: 3951007368073501982, guid: c466aaf5b3426574c9cec4ac46623bfe, type: 3}
-  beatsOfset: 10
+  beatsOfset: 7
   OfsetX: 0.5
 --- !u!4 &72195343
 Transform:
