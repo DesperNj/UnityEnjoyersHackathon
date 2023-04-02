@@ -6,6 +6,7 @@ public class FoloversManager : MonoBehaviour
 {
     public GameObject foloverObject;
     public int beatsOfset;
+    public float OfsetX;
     int beatdCatched = 0;
     // Start is called before the first frame update
     void Start()
@@ -39,7 +40,7 @@ public class FoloversManager : MonoBehaviour
         Vector3 position;
         position.x = transform.position.x + offset.x;
         position.y = transform.position.y;
-        position.z = transform.position.z + offset.z;
+        position.z = transform.position.z + (offset.z * OfsetX);
 
         Instantiate(foloverObject, position, Quaternion.identity, transform);
     }
