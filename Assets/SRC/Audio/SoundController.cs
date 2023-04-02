@@ -133,8 +133,13 @@ public class SoundController : MonoBehaviour
     {
         audioS.clip = winAudio;
         audioS.pitch = 1.4f;
+        audioS.loop = false;
         audioS.Play();
-        Invoke(nameof(musicEnded.Invoke), audioS.clip.length);
+        Invoke(nameof(TrackEnded), audioS.clip.length);
+    }
+    public void TrackEnded()
+    {
+        musicEnded.Invoke();
     }
 
 }
