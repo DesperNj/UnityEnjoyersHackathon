@@ -1,0 +1,56 @@
+Rix.png
+size:1547,511
+filter:Linear,Linear
+pma:true
+body
+bounds:2,10,538,499
+offsets:1,1,540,501
+bongo 1_base
+bounds:1044,212,297,249
+offsets:1,1,299,251
+rotate:90
+bongo 1_up
+bounds:718,190,319,161
+offsets:1,1,321,163
+rotate:90
+bongo 2_base
+bounds:1295,213,296,250
+offsets:1,1,298,252
+rotate:90
+bongo 2_up
+bounds:881,190,319,161
+offsets:1,1,321,163
+rotate:90
+eye_white
+bounds:1027,35,237,153
+offsets:1,1,239,155
+hnd_l
+bounds:1266,15,195,102
+offsets:1,1,197,104
+rotate:90
+hnd_r
+bounds:901,10,178,124
+offsets:1,1,180,126
+rotate:90
+mouth
+bounds:1027,9,41,24
+offsets:1,1,43,26
+pupil_l
+bounds:1370,168,43,75
+offsets:1,1,45,77
+rotate:90
+pupil_r
+bounds:1447,168,43,75
+offsets:1,1,45,77
+rotate:90
+tail
+bounds:730,8,169,180
+offsets:1,1,171,182
+wing_l
+bounds:542,173,336,174
+offsets:1,1,338,176
+rotate:90
+wing_r
+bounds:542,2,169,186
+offsets:1,1,171,188
+rotate:90
