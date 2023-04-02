@@ -25,7 +25,7 @@ public class AudioPeer : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();   
 
     }
-    void FixedUpdate()
+    void Update()
     {
         _timeAfterBeatAccepted += Time.deltaTime;
         SetSpectrumAudioSource();

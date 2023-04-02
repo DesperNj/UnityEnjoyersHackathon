@@ -14,7 +14,7 @@ public class BongoCat : MonoBehaviour
     private float idleTime = 0f;
     private bool isInIdle = false;
 
-    public void FixedUpdate()
+    public void Update()
     {
         idleTime += Time.deltaTime;
         if(!isInIdle && idleTime >= timeToStartIdle)

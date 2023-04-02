@@ -42,7 +42,7 @@ public class SoundController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         beatTimeAfterStart += Time.deltaTime;
     }

@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
