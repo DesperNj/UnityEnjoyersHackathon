@@ -1,6 +1,9 @@
+using Spine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
@@ -19,29 +22,66 @@ public class AudioPeer : MonoBehaviour
     public float[] _freqGroups = new float[8];
     public int[] _freqGroupsToListen;
 
+    public bool writeCurrentBeat = false;
+    public bool saveBeat = false;
+
+
+    private BeatSaver beatSaver;
+    private int currentSavedBeat = 0;
     public UnityEvent beatStart;
+
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();   
+        _audioSource = GetComponent<AudioSource>();
+        beatSaver = new BeatSaver();
+        beatSaver.savedBeatTimings = new List<float>();
 
+        if (writeCurrentBeat)
+        {
+            Invoke(nameof(SaveBeat), _audioSource.clip.length);
+        }
+        else
+        {
+            string text =  System.IO.File.ReadAllText(Application.dataPath + "/LastSavedBeat.json");
+            beatSaver = JsonUtility.FromJson<BeatSaver>(text);
+         }
     }
     void Update()
     {
         _timeAfterBeatAccepted += Time.deltaTime;
+#if UNITY_EDITOR && !UNITY_WEBGL
+        if (saveBeat)
+        {
+            SaveBeat();
+            saveBeat = false;
+        }
         SetSpectrumAudioSource();
         SetFrequinceGroups();
-        if (_timeAfterBeatAccepted < beatAcceptPause)
+        if (_timeAfterBeatAccepted < beatSaver.savedBeatTimings[currentSavedBeat])
         {
             return;
         }
-        for (int a =0; a< _freqGroupsToListen.Length; a++)
+        for (int a = 0; a < _freqGroupsToListen.Length; a++)
         {
-            if (_freqGroups[_freqGroupsToListen[a]]  > freqSensivity)
+            if (_freqGroups[_freqGroupsToListen[a]] > freqSensivity)
             {
-                _timeAfterBeatAccepted=0f; 
                 beatStart.Invoke();
+                _timeAfterBeatAccepted = 0f;
             }
         }
+
+
+#endif
+#if UNITY_WEBGL
+        if (_timeAfterBeatAccepted < beatSaver.savedBeatTimings[currentSavedBeat])
+        {
+            return;
+        }
+        beatStart.Invoke();
+        _timeAfterBeatAccepted = 0f;
+        currentSavedBeat++;
+
+#endif
     }
     void SetSpectrumAudioSource()
     {
@@ -60,7 +100,26 @@ public class AudioPeer : MonoBehaviour
                 count++;
             }
             avgFreq /= count;
-            _freqGroups[i] = avgFreq*10;
+            _freqGroups[i] = avgFreq * 10;
         }
     }
+
+    public void SaveBeat()
+    {
+        var fileToSave = JsonUtility.ToJson(beatSaver);
+        System.IO.File.WriteAllText(Application.dataPath + "/LastSavedBeat.json", fileToSave);
+    }
+
+    public void WriteBeat()
+    {
+        beatSaver.savedBeatTimings.Add(_timeAfterBeatAccepted);
+    }
+}
+
+
+[Serializable]
+public class BeatSaver
+{
+    public List<float> savedBeatTimings;
+
 }

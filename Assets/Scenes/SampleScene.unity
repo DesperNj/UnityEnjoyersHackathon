@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43811753, g: 0.4861096, b: 0.5663862, a: 1}
+  m_IndirectSpecularColor: {r: 0.43811783, g: 0.48611027, b: 0.56638724, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3422,6 +3422,8 @@ MonoBehaviour:
   - 0
   - 0
   _freqGroupsToListen: 03000000
+  writeCurrentBeat: 0
+  saveBeat: 0
   beatStart:
     m_PersistentCalls:
       m_Calls:
@@ -3440,6 +3442,18 @@ MonoBehaviour:
       - m_Target: {fileID: 667939084}
         m_TargetAssemblyTypeName: SoundController, Assembly-CSharp
         m_MethodName: AcceptBeat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1591556698}
+        m_TargetAssemblyTypeName: AudioPeer, Assembly-CSharp
+        m_MethodName: WriteBeat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

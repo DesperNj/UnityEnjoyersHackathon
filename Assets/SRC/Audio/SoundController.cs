@@ -35,7 +35,7 @@ public class SoundController : MonoBehaviour
     private bool catchingLock = false;
     private float beatTimeAfterStart = 0;
     private int currentCatchTry = 0;
-    private int catchTries = 2;
+    private int catchTries = 1;
     private Transform _transform;
     private bool additionalSoundStarted = false;
 
