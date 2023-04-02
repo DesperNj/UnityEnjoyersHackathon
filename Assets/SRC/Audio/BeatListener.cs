@@ -25,7 +25,7 @@ public class BeatListener : MonoBehaviour
             return;
         }
         var transform = GetComponent<Transform>();
-        transform.localScale = new Vector3(1.0f, 0.50f, 1.0f);
+        transform.localScale = new Vector3(1.0f, 0.85f, 1.0f);
         Invoke(nameof(ResetScale), 0.1f);
     }
     public void BeatMissedSoundDist()
