@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LivesController : MonoBehaviour
 {
     public static LivesController instance = null;
+    public UnityEvent gameOver;
     public int livesOnStart;
     public int curentLives;
 
@@ -36,6 +38,10 @@ public class LivesController : MonoBehaviour
 
         curentLives--;
         UpdateLivesUI(false);
+
+        if (curentLives == 0) {
+            gameOver.Invoke();
+        }
     }
 
     void UpdateLivesUI(bool active)
