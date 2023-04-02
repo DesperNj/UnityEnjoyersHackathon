@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -20,6 +21,17 @@ public class AudioPeer : MonoBehaviour
     public int[] _freqGroupsToListen;
 
     public UnityEvent beatStart;
+
+    [DllImport("__Internal")]
+    private static extern bool StartLipSampling(string name, float duration, int bufferSize);
+
+    [DllImport("__Internal")]
+    private static extern bool CloseLipSampling(string name);
+
+    [DllImport("__Internal")]
+    private static extern bool GetLipSamples(string name, float[] freqData, int size);
+
+
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();   
@@ -45,7 +57,21 @@ public class AudioPeer : MonoBehaviour
     }
     void SetSpectrumAudioSource()
     {
+#if UNITY_EDITOR
         _audioSource.GetSpectrumData(_samples, 0, FFTWindow.Blackman);
+#endif
+#if UNITY_WEBGL && !UNITY_EDITOR
+
+
+        StartLipSampling(name, _audioSource.clip.length, 256);
+
+        //if audio stopped
+        CloseLipSampling(name);
+
+        //when getting the audio data (kinda like GetSpectrumData)
+        GetLipSamples(name, _samples, _samples.Length);
+#endif
+
     }
     void SetFrequinceGroups()
     {
