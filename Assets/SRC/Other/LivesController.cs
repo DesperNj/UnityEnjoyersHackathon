@@ -43,7 +43,7 @@ public class LivesController : MonoBehaviour
 
         if (curentLives == 0) {
             gameOver.Invoke();
-            Invoke("GameOver", gameOverDelay);
+            Invoke("LoadMenuScene", gameOverDelay);
         }
     }
 
@@ -69,7 +69,7 @@ public class LivesController : MonoBehaviour
         curentLives++;
     }
 
-    void GameOver()
+    public void LoadMenuScene()
     {
         SceneManager.LoadScene("Menu");
     }
