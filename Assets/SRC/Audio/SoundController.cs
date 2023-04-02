@@ -24,6 +24,7 @@ public class SoundController : MonoBehaviour
     public float beatCatchTimeRange = 0;
     public UnityEvent beatCatched;
     public UnityEvent beatMissed;
+    public UnityEvent beatIgnored;
     public GameObject backAudioPrefab;
     public AdditioanSound[] additioanSounds;
     public AudioSource audioS;
@@ -93,6 +94,10 @@ public class SoundController : MonoBehaviour
     }
     public void AcceptBeat()
     {
+        if (!catchingLock)
+        {
+            beatIgnored.Invoke();
+        }
         beatsAccepted++;
         beatTimeAfterStart = 0f;
         currentCatchTry = 0;

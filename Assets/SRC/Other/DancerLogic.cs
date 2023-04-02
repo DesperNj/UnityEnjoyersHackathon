@@ -8,12 +8,20 @@ public class DancerLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        skeleton = GetComponent<SkeletonAnimation>();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void DancerCatchBeat()
     {
-        
+        skeleton.AnimationName = "dance";
+        Invoke(nameof(SetIdle), 0.3f);
+    }
+    public void DancerMissBeat()
+    {
+        skeleton.AnimationName = "fail";
+        Invoke(nameof(SetIdle), 0.3f);
+    }
+    public void SetIdle()
+    {
+        skeleton.AnimationName = "idle";
     }
 }
