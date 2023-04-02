@@ -8,21 +8,6 @@ public class FoloversManager : MonoBehaviour
     public int beatsOfset;
     public float OfsetX;
     int beatdCatched = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        int beatsCatched = SoundController.instance.beatsCatched;
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            SpawnFolover();
-        }
-    }
     public void BeatdCatched()
     {
         beatdCatched++;
