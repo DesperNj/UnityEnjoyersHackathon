@@ -1669,6 +1669,7 @@ MonoBehaviour:
     volume: 1
   audioS: {fileID: 0}
   winAudio: {fileID: 8300000, guid: 273ed71355804494abc5c41427c1a445, type: 3}
+  musicDist: {fileID: 7400000, guid: c2f3a14f07074464781439cffb24f561, type: 2}
   disableAdditionalSounds: 0
 --- !u!81 &667939085
 AudioListener:

@@ -142,6 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b7c9849e738274d86f332fde0457f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioDist: {fileID: 7400000, guid: c2f3a14f07074464781439cffb24f561, type: 2}
+  enviromentBeatCatched: {fileID: 0}
+  defaultAnim: 0
 --- !u!111 &266576697347068119
 Animation:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ public class SoundController : MonoBehaviour
     public AdditioanSound[] additioanSounds;
     public AudioSource audioS;
     public AudioClip winAudio;
+    public AnimationClip musicDist;
 
     public bool disableAdditionalSounds = false;
     private bool catchingLock = false;
@@ -74,6 +75,7 @@ public class SoundController : MonoBehaviour
                 var prefab = Instantiate(backAudioPrefab);
                 var component = prefab.AddComponent<BeatListener>();
                 prefab.transform.parent = _transform;
+                component.audioDist = musicDist;
 
                 var audioS = prefab.GetComponent<AudioSource>();
                 audioS.clip = additioanSounds[a].audio[0];
