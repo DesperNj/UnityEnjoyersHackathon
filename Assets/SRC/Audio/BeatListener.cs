@@ -13,20 +13,7 @@ public class BeatListener : MonoBehaviour
     {
         animation = GetComponent<Animation>();
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (SoundController.instance.TryCatchBeat())
-            {
-                BeatCatched();
-            }
-            else
-            {
-                BeatMissedSoundDist();
-            }
-        }
-    }
+   
     public void ResetPitch()
     {
         GetComponent<AudioSource>().pitch = 1.0f;

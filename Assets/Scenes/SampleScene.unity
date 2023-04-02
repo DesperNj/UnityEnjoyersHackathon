@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -673,6 +673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 502467718}
+  - component: {fileID: 502467719}
   m_Layer: 0
   m_Name: GameWorld
   m_TagString: Untagged
@@ -698,6 +699,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &502467719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502467717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a45a9ff3b987a4e9bb13b27722704b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &667939082
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beatsCatched: 0
   beatsMissed: 0
-  beatCatchTimeRange: 0.3
+  beatsAccepted: 0
+  beatCatchTimeRange: 0.4
   beatCatched:
     m_PersistentCalls:
       m_Calls:
@@ -811,6 +825,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 888034608}
+        m_TargetAssemblyTypeName: BeatListener, Assembly-CSharp
+        m_MethodName: BeatCatched
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   beatMissed:
     m_PersistentCalls:
       m_Calls:
@@ -829,6 +855,18 @@ MonoBehaviour:
       - m_Target: {fileID: 72195342}
         m_TargetAssemblyTypeName: FoloversManager, Assembly-CSharp
         m_MethodName: FoloverGone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 888034608}
+        m_TargetAssemblyTypeName: BeatListener, Assembly-CSharp
+        m_MethodName: BeatMissedSoundDist
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1070,6 +1108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 888034607}
   - component: {fileID: 888034608}
+  - component: {fileID: 888034609}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -1109,6 +1148,21 @@ MonoBehaviour:
   audioDist: {fileID: 0}
   enviromentBeatCatched: {fileID: 0}
   defaultAnim: 1
+--- !u!111 &888034609
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888034606}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

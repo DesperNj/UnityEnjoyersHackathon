@@ -4,8 +4,6 @@ using UnityEngine.Audio;
 using UnityEngine;
 using UnityEngine.Timeline;
 using System.Numerics;
-using Palmmedia.ReportGenerator.Core.Common;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Unity.VisualScripting;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -18,6 +16,9 @@ public class SoundController : MonoBehaviour
     public int beatsCatched = 0;
     [ReadOnly(true)]
     public int beatsMissed = 0;
+    [ReadOnly(true)]
+    public int beatsAccepted = 0;
+
     public float beatCatchTimeRange = 0;
     public UnityEvent beatCatched;
     public UnityEvent beatMissed;
@@ -27,6 +28,8 @@ public class SoundController : MonoBehaviour
     public bool disableAdditionalSounds = false;
     private bool catchingLock = false;
     private float beatTimeAfterStart = 0;
+    private int currentCatchTry = 0;
+    private int catchTries = 2;
     private Transform _transform;
 
     private void Awake()
@@ -48,6 +51,7 @@ public class SoundController : MonoBehaviour
         beatsCatched++;
         beatCatched.Invoke();
         CheckAdditionalSounds();
+        Debug.Log("BeatCatched - " + beatsCatched);
     }
     public void CheckAdditionalSounds()
     {
@@ -68,7 +72,7 @@ public class SoundController : MonoBehaviour
                 audioS.clip = additioanSounds[a].audio[0];
                 audioS.volume = additioanSounds[a].volume;
                 audioS.Play();
-              //  beatMissed.AddListener(component.MissBeat);
+                beatMissed.AddListener(component.BeatMissedSoundDist);
             }
         }
     }
@@ -76,30 +80,40 @@ public class SoundController : MonoBehaviour
     {
         beatMissed.Invoke();
         beatsMissed++;
+        Debug.Log("BeatMissed - " + beatsMissed);
     }
     public void AcceptBeat()
     {
+        beatsAccepted++;
         beatTimeAfterStart = 0f;
+        currentCatchTry = 0;
         catchingLock = false;
     }
-    public bool TryCatchBeat()
+    public void TryCatchBeat()
     {
         if (catchingLock)
         {
-            catchingLock = !catchingLock;
-            return false;
+            BeatMissed();
+            return;
         }
         if (beatTimeAfterStart <= beatCatchTimeRange)
         {
             BeatdCatched();
-            return true;
         }
         else
         {
-            Invoke(nameof(TryCatchBeat), beatCatchTimeRange);
-            BeatMissed();
+            if (currentCatchTry == catchTries)
+            {
+                BeatMissed();
+            }
+            else
+            {
+                Invoke(nameof(TryCatchBeat), 0.1f * currentCatchTry);
+                currentCatchTry++;
+                return;
+            }
         }
-        return catchingLock = true;
+        catchingLock = true;
     }
     public void PlayAudio(AudioSource audio)
     {
